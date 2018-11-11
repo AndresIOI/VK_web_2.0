@@ -13,8 +13,15 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Auth::routes();
+
+Route::Resource('etiqueta','EtiquetasController');
+Route::Resource('examen','ExamenesController');
+Route::Resource('pdf','PdfsController');
+Route::Resource('video','VideosController');
+Route::Resource('pregunta','PreguntasController');
+
 
 Route::get('/home', 'HomeController@index')->name('home');

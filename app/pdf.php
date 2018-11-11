@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class etiqueta extends Model
+class pdf extends Model
 {
     protected $fillable = [
-        'id_etiqueta', 'materia'
+        'id_pdf', 'titulo_pdf','imagen','usuario_id','etiqueta_id'
     ];
 }
