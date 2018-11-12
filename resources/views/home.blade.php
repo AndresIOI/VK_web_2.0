@@ -22,7 +22,7 @@
   </li>
   @if(Auth::User()->rol_id == 2)
   <li class="nav-item">
-    <a class="nav-link" name="subircontenido_tab" data-toggle="tab" href="#subircontenido_tab" role="tab" aria-controls="contact" aria-selected="false">Evaluar Contenido</a>
+    <a class="nav-link" name="evaluar" data-toggle="tab" href="#evaluar" role="tab" aria-controls="contact" aria-selected="false">Evaluar Contenido</a>
   </li>
   @endif
 </ul>
@@ -35,9 +35,9 @@
     <div class="form-group" align="center">
 
       <div class="card" style="width: 18rem;">
-      <img class="card-img-top" src=".../100px180/" alt="Card image cap" width="150px" height="150px">
+      <img class="card-img-top" src="{{asset('imagenes/test.png')}}" alt="Card image cap" width="50px" height="150px">
         <div class="card-body">
-          <h5 class="card-title">Física para Informáticos</h5>
+          <h5 class="card-title">Física Básica</h5>
           <p class="card-text">Examen parcial de la materia de Física para Informáticos</p>
           <a href="#" class="btn btn-primary">Hacer Prueba</a>
         </div>
@@ -50,23 +50,104 @@
 
   </div>
 
-  <div class="tab-pane fade" id="estadisticas_tab" role="tabpanel" aria-labelledby="profile-tab">Aquí irá la sección de estadisticas</div>
-  <div class="tab-pane fade" id="videos_tab" role="tabpanel" aria-labelledby="contact-tab"> Videos </div>
-  <div class="tab-pane fade" id="pdf_tab" role="tabpanel" aria-labelledby="contact-tab">
+  <div class="tab-pane fade" id="estadisticas_tab" role="tabpanel" aria-labelledby="profile-tab">
 
-      <div class="card-deck">
-        @foreach($pdfs as $pdf)
-        <div class="card">
-          <img class="card-img-top" src=".../100px200/" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+</br>
+<div class="container" align="center">
+    <div id="chart_div" style="width:200; height:150">
+
+
+        <chart></chart>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="tab-pane fade" id="videos_tab" role="tabpanel" aria-labelledby="contact-tab">
+    <!-- Grid row -->
+</br>
+    <div class="container-fluid" align="center">
+<div class="row">
+  @foreach($videos as $video)
+
+  <div class="col-lg-4">
+      <div class="card" style="width: 18rem;">
+
+        <a><img class="img-fluid z-depth-1" src="https://mdbootstrap.com/img/screens/yt/screen-video-1.jpg" alt="video" data-toggle="modal" data-target="#modal1"></a>
+
+
+        <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+
+            <!--Content-->
+            <div class="modal-content">
+
+              <!--Body-->
+              <div class="modal-body mb-0 p-0">
+
+                <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                  <video class="embed-responsive-item" src="videos/{{$video->video}}"
+                    allowfullscreen controls></video>
+                </div>
+
+              </div>
+
+              <!--Footer-->
+              <div class="modal-footer justify-content-center">
+
+
+                <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">Close</button>
+
+              </div>
+
+            </div>
+            <!--/.Content-->
+
           </div>
         </div>
 
+
+        <div class="card-body">
+
+          {{$video->titulo_video}}
+
+        </div>
+      </div>
+    </div>
+      @endforeach
+    </div>
+</div>
+
+  </div>
+  <div class="tab-pane fade" id="pdf_tab" role="tabpanel" aria-labelledby="contact-tab">
+
+  </br>
+      <div class="container">
+
+<div class="row">
+          @foreach($pdfs as $pdf)
+          <div class="col-lg-4">
+
+          <div class="card" style="width: 18rem;">
+
+          <a><img src="https://mdbootstrap.com/img/screens/yt/screen-video-1.jpg" alt="video" style="width: 18rem;" ></a>
+
+          <div class="card-body">
+
+            {{$pdf->titulo_pdf}}
+
+          </br>
+        </br>
+            <a href="/download/{{$pdf->pdf}}" class="btn btn-primary"  >Descargar</a>
+          </div>
+
+          </div>
+        </div>
         @endforeach
       </div>
+  </div>
 
   </div>
   <div class="tab-pane fade"  id="subircontenido_tab" role="tabpanel" aria-labelledby="contact-tab">
@@ -78,11 +159,11 @@
           <div class="card-header">Subir video</div>
           <div class="card-body text-dark">
             @csrf
-            <input type="text" name = "titulo_video" placeholder="Titulo" class="form-control">
+            <input type="text" name = "titulo_video" id ="titulo_video" placeholder="Titulo" class="form-control">
             <br>
             <div class="custom-file">
-              <label class="custom-file-label" for="customFileLang" align="left">Video</label>
-              <input type="file" name="video" class="custom-file-input" lang="es" >
+              <!-- <label class="custom-file-label" for="customFileLang" align="left">Video</label> -->
+              <input type="file" name="video" lang="es" >
             </div>
             <br>
             <br>
@@ -94,7 +175,7 @@
             </select>
             <br>
             <br>
-            <button type="submit" class="btn btn-primary">Agregar Video</button>
+            <button type="submit" class="btn btn-primary" >Agregar Video</button>
           </div>
           </div>
         </form>
@@ -110,11 +191,11 @@
               <div class="card-header">Subir PDF</div>
               <div class="card-body text-dark">
                 @csrf
-                <input type="text" name = "titulo_pdf" class="form-control" placeholder="Titulo">
+                <input type="text" name = "titulo_pdf" class="form-control" id="titulo_pdf"placeholder="Titulo">
                 <br>
                 <div class="custom-file">
-                  <label class="custom-file-label" for="customFileLang" align="left">PDF</label>
-                  <input type="file" name="pdf" class="custom-file-input" lang="es" >
+                  <!--<label class="custom-file-label" for="customFileLang" align="left">PDF</label>-->
+                  <input type="file" name="pdf" lang="es" >
                 </div>
                 <br>
                 <br>
@@ -126,15 +207,23 @@
                 </select>
                 <br>
                 <br>
-                <button type="submit" class="btn btn-primary">Agregar PDF</button>
+                <button type="submit" class="btn btn-primary" onclick="ver();">Agregar PDF</button>
               </div>
             </div>
           </form>
       </div>
   </div>
-  </div>
-  @if(Auth::User()->rol_id == 1)
+
+  @if(Auth::User()->rol_id == 2)
     <div class="tab-pane fade"  id="evaluar" role="tabpanel" aria-labelledby="contact-tab">Evaluar Contenido</div>
   @endif
 </div>
+
+<script type="text/javascript">
+function ver(){
+  alert("Carga Exitosa "+ document.getElementById('titulo_pdf').value);
+}
+
+
+</script>
 @endsection

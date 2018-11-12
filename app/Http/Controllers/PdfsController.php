@@ -36,7 +36,7 @@ class PdfsController extends Controller
     public function store(Request $request)
     {
         if($request->hasFile('pdf')){
-         
+
             $file = $request->file('pdf');
             $name = time().$file->getClientOriginalName();
             $file->move(public_path().'/pdfs/',$name);
@@ -48,7 +48,7 @@ class PdfsController extends Controller
         $pdf->etiqueta_id = $request->etiqueta;
         $pdf->imagen = time()."_"."default.jpg";
         $pdf->usuario_id = Auth::User()->id;
-        
+
 
         $pdf->save();
 
@@ -98,5 +98,11 @@ class PdfsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function download ($file){
+
+      $pathFile = "C:Users\Daniel\Documents\VK_web_2.0\public\pdfs\\".$file;
+      return response()->download($pathFile);
     }
 }

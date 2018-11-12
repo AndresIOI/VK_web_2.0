@@ -37,7 +37,7 @@ class VideosController extends Controller
     public function store(Request $request)
     {
         if($request->hasFile('video')){
-         
+
             $file = $request->file('video');
             $name = time().$file->getClientOriginalName();
             $file->move(public_path().'/videos/',$name);
@@ -49,11 +49,11 @@ class VideosController extends Controller
         $video->etiqueta_id = $request->etiqueta;
         $video->imagen = time()."_"."default.jpg";
         $video->usuario_id = Auth::User()->id;
-        
+
 
         $video->save();
 
-        return route('home');
+        return redirect('home');
     }
 
     /**

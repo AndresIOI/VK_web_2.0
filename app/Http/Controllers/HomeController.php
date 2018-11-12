@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\etiqueta;
 use App\pdf;
+use App\video;
+use App\examen;
 
 
 class HomeController extends Controller
@@ -26,8 +28,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $examen = examen::all();
         $pdfs = pdf::all();
         $etiquetas = etiqueta::all();
-        return view('home',compact('etiquetas','pdfs'));
+        $videos = video::all();
+        return view('home',compact('etiquetas','pdfs','videos'));
     }
 }

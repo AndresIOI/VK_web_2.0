@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\examen;
 
 class ExamenesController extends Controller
 {
@@ -13,7 +14,8 @@ class ExamenesController extends Controller
      */
     public function index()
     {
-        //
+      $examen = examen::all();
+      return view('examen.create',compact('examen'));
     }
 
     /**
@@ -23,7 +25,7 @@ class ExamenesController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**

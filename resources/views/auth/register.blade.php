@@ -26,7 +26,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="apellidop" class="col-md-4 col-form-label text-md-right">{{ __('Apellidop') }}</label>
+                            <label for="apellidop" class="col-md-4 col-form-label text-md-right">{{ __('Apellido Paterno') }}</label>
 
                             <div class="col-md-6">
                                 <input id="apellidop" type="text" class="form-control{{ $errors->has('apellidop') ? ' is-invalid' : '' }}" name="apellidop" value="{{ old('apellidop') }}" required autofocus>
@@ -40,7 +40,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="apellidom" class="col-md-4 col-form-label text-md-right">{{ __('Apellidom') }}</label>
+                            <label for="apellidom" class="col-md-4 col-form-label text-md-right">{{ __('Apellido Materno') }}</label>
 
                             <div class="col-md-6">
                                 <input id="apellidom" type="text" class="form-control{{ $errors->has('apellidop') ? ' is-invalid' : '' }}" name="apellidom" value="{{ old('apellidom') }}" required autofocus>
@@ -71,7 +71,7 @@
                                 @endif
                             </div>
                         </div>
-
+                      </div>
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
@@ -100,6 +100,8 @@
                             </div>
                         </div>
 
+
+
                         <div class="form-group row">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
@@ -109,16 +111,19 @@
                         </div>
 
                         <div class="form-group row mb-0">
+
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                                    {{ __('Registro') }}
                                 </button>
                             </div>
                         </div>
+
                     </form>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 @endsection

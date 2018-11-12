@@ -23,5 +23,7 @@ Route::Resource('pdf','PdfsController');
 Route::Resource('video','VideosController');
 Route::Resource('pregunta','PreguntasController');
 
+Route::get('/download/{file}','PdfsController@download');
+
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -11,6 +11,43 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+          // Load the Visualization API and the piechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+
+      // Create the data table.
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Fecha');
+      data.addColumn('number', 'Calificacion');
+      data.addRows([
+        ['10/10/18', 4],
+        ['11/10/18', 7],
+        ['11/10/18', 8],
+        ['12/10/18', 10]
+
+      ]);
+
+      // Set chart options
+            var options = {'title':'Historial',
+                           'width':600,
+                           'height':300};
+
+
+      // Instantiate and draw our chart, passing in some options.
+      var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+    }
+    </script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -24,7 +61,7 @@
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Vk Web
+                    VK Web
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -41,11 +78,11 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
                             </li>
                             <li class="nav-item">
                                 @if (Route::has('register'))
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Registrarse') }}</a>
                                 @endif
                             </li>
                         @else
@@ -76,5 +113,21 @@
             @yield('content')
         </main>
     </div>
+    <script type="text/javascript">
+    $('#modal1').on('hidden.bs.modal', function (e) {
+// do something...
+$('#modal1 iframe').attr("src", $("#modal1 iframe").attr("src"));
+});
+
+$('#modal6').on('hidden.bs.modal', function (e) {
+// do something...
+$('#modal6 iframe').attr("src", $("#modal6 iframe").attr("src"));
+});
+
+$('#modal4').on('hidden.bs.modal', function (e) {
+// do something...
+$('#modal4 iframe').attr("src", $("#modal4 iframe").attr("src"));
+});
+    </script>
 </body>
 </html>
